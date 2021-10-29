@@ -1,4 +1,5 @@
 import MainMenu from './MainMenu';
+import Options from './Options';
 import { components } from '../lib/enums';
 import { useMainContext } from '../hooks/mainContext';
 
@@ -6,7 +7,12 @@ import { useMainContext } from '../hooks/mainContext';
 // Displays the correct component based on the activeComponent state.
 function App() {
     const { activeComponent, fetchURL } = useMainContext();
-    return <main>{activeComponent === components.Main_Menu && <MainMenu />}</main>;
+    return (
+        <main>
+            {activeComponent === components.Main_Menu && <MainMenu />}
+            {activeComponent === components.Options && <Options />}
+        </main>
+    );
 }
 
 export default App;
