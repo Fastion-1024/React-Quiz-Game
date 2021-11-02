@@ -25,7 +25,9 @@ const AppProvider: React.FC<React.ReactNode> = ({ children }) => {
         type: '',
         amount: 10,
     });
-    const [fetchURL, setFetchURL] = useState('https://opentdb.com/api.php?amount=10');
+    const [fetchURL, setFetchURL] = useState(
+        'https://opentdb.com/api.php?amount=10&encode=url3986'
+    );
 
     const navigateToMainMenu = (): void => {
         setActiveComponent(components.Main_Menu);

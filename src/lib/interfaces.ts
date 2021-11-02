@@ -12,4 +12,17 @@ export interface IQuestion {
     question: string;
     correct_answer: string;
     incorrect_answers: string[];
+    shuffled_answers?: string[];
+}
+
+export interface IQuestions {
+    response_code: number;
+    results: IQuestion[];
+}
+
+export interface IAnswer {
+    question: string;
+    answer: string;
+    correct: boolean;
+    correctAnswer: string;
 }
