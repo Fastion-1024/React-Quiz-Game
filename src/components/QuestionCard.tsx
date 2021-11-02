@@ -1,23 +1,27 @@
 import React from 'react';
-import { IQuestion } from '../lib/interfaces';
+import { IAnswer, IQuestion } from '../lib/interfaces';
 
 interface IProps {
     question: IQuestion;
-    questionNumber: number;
-    totalQuestions: number;
+    userAnswer: IAnswer | undefined;
+    callback: (answer: string) => void;
 }
 
-const QuestionCard: React.FC<IProps> = ({ question, questionNumber, totalQuestions }) => {
+const QuestionCard: React.FC<IProps> = ({ question, userAnswer, callback }) => {
     return (
         <div>
-            <h1>{decodeURIComponent(question.question)}</h1>
-            <h4>
-                {questionNumber} / {totalQuestions}
-            </h4>
-            <button>{decodeURIComponent(question.incorrect_answers[0])}</button>
-            <button>{decodeURIComponent(question.incorrect_answers[1])}</button>
-            <button>{decodeURIComponent(question.incorrect_answers[2])}</button>
-            <button>{decodeURIComponent(question.correct_answer)}</button>
+            <h1>{question.question}</h1>
+            {question.shuffled_answers?.map((item, index) => {
+                return (
+                    <button
+                        key={index}
+                        value={item}
+                        disabled={userAnswer ? true : false}
+                        onClick={(e) => callback(e.currentTarget.value)}>
+                        {item}
+                    </button>
+                );
+            })}
         </div>
     );
 };
