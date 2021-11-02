@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { useMainContext } from '../hooks/mainContext';
+import useFetch from '../hooks/useFetch';
+import { ICategories } from '../lib/interfaces';
 
 const Options: React.FC = () => {
+    const { data, error } = useFetch<ICategories>('https://opentdb.com/api_category.php');
     const { gameOptions, navigateToMainMenu, updateGameOptions } = useMainContext();
     const [options, setOptions] = useState(gameOptions);
 
@@ -19,6 +22,10 @@ const Options: React.FC = () => {
                     value={options.category}
                     onChange={(e) => setOptions({ ...options, category: e.target.value })}>
                     <option value=''>Any Category</option>
+                    {data &&
+                        data.trivia_categories.map((category) => {
+                            return <option value={category.id}>{category.name}</option>;
+                        })}
                 </select>
             </div>
             <div>

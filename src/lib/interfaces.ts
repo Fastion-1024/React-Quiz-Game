@@ -26,3 +26,12 @@ export interface IAnswer {
     correct: boolean;
     correctAnswer: string;
 }
+
+export interface ICategory {
+    id: number;
+    name: string;
+}
+
+export interface ICategories {
+    trivia_categories: ICategory[];
+}
