@@ -4,9 +4,10 @@ import { IAnswer } from '../lib/interfaces';
 interface IProps {
     score: number;
     userAnswers: IAnswer[];
+    navigateHome: () => void;
 }
 
-const ResultsCard: React.FC<IProps> = ({ score, userAnswers }) => {
+const ResultsCard: React.FC<IProps> = ({ score, userAnswers, navigateHome }) => {
     return (
         <div>
             <h2>Your Final Score</h2>
@@ -20,6 +21,7 @@ const ResultsCard: React.FC<IProps> = ({ score, userAnswers }) => {
                     </div>
                 );
             })}
+            <button onClick={navigateHome}>Home</button>
         </div>
     );
 };

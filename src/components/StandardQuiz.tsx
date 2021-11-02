@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useMainContext } from '../hooks/mainContext';
 import useFetch from '../hooks/useFetch';
 import { IQuestion, IQuestions, IAnswer } from '../lib/interfaces';
 import { decodeURIQuestions, shuffleArray } from '../lib/utils';
@@ -10,6 +11,7 @@ interface IProps {
 }
 
 const StandardQuiz: React.FC<IProps> = ({ url }) => {
+    const { navigateToMainMenu } = useMainContext();
     const { data, error } = useFetch<IQuestions>(url);
     const [questions, setQuestions] = useState<IQuestion[]>();
     const [userAnswers, setUserAnswers] = useState<IAnswer[]>([]);
@@ -86,7 +88,11 @@ const StandardQuiz: React.FC<IProps> = ({ url }) => {
     if (gameOver) {
         return (
             <div>
-                <ResultsCard score={score} userAnswers={userAnswers} />
+                <ResultsCard
+                    score={score}
+                    userAnswers={userAnswers}
+                    navigateHome={navigateToMainMenu}
+                />
             </div>
         );
     }
