@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { components } from '../lib/enums';
 import { IGameOptions } from '../lib/interfaces';
+import { modes } from '../lib/enums';
 
 type ContextType = {
     activeComponent: components;
@@ -8,10 +9,7 @@ type ContextType = {
     fetchURL: string;
     navigateToMainMenu: () => void;
     navigateToOptions: () => void;
-    navigateToStandardGame: () => void;
-    navigateToTimeGame: () => void;
-    navigateToScoreGame: () => void;
-    navigateToMarathonGame: () => void;
+    navigateToQuiz: (mode: modes) => void;
     updateGameOptions: (gameOptions: IGameOptions) => void;
 };
 
@@ -28,6 +26,7 @@ const AppProvider: React.FC<React.ReactNode> = ({ children }) => {
     const [fetchURL, setFetchURL] = useState(
         'https://opentdb.com/api.php?amount=10&encode=url3986'
     );
+    const [gameMode, setGameMode] = useState(modes.Standard);
 
     const navigateToMainMenu = (): void => {
         setActiveComponent(components.Main_Menu);
@@ -37,20 +36,9 @@ const AppProvider: React.FC<React.ReactNode> = ({ children }) => {
         setActiveComponent(components.Options);
     };
 
-    const navigateToStandardGame = (): void => {
-        setActiveComponent(components.Standard_Quiz);
-    };
-
-    const navigateToTimeGame = (): void => {
-        setActiveComponent(components.Time_Quiz);
-    };
-
-    const navigateToScoreGame = (): void => {
-        setActiveComponent(components.Score_Quiz);
-    };
-
-    const navigateToMarathonGame = (): void => {
-        setActiveComponent(components.Marathon_Quiz);
+    const navigateToQuiz = (mode: modes): void => {
+        setActiveComponent(components.Quiz);
+        setGameMode(mode);
     };
 
     const updateGameOptions = (gameOptions: IGameOptions) => {
@@ -80,10 +68,7 @@ const AppProvider: React.FC<React.ReactNode> = ({ children }) => {
                 fetchURL,
                 navigateToMainMenu,
                 navigateToOptions,
-                navigateToStandardGame,
-                navigateToScoreGame,
-                navigateToTimeGame,
-                navigateToMarathonGame,
+                navigateToQuiz,
                 updateGameOptions,
             }}>
             {children}

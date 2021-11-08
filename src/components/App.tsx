@@ -12,10 +12,7 @@ function App() {
         <main>
             {activeComponent === components.Main_Menu && <MainMenu />}
             {activeComponent === components.Options && <Options />}
-            {activeComponent === components.Standard_Quiz && (
-                <Quiz url={fetchURL} mode={modes.Standard} />
-            )}
-            {activeComponent === components.Time_Quiz && <Quiz url={fetchURL} mode={modes.Time} />}
+            {activeComponent === components.Quiz && <Quiz url={fetchURL} mode={modes.Standard} />}
         </main>
     );
 }

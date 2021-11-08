@@ -1,22 +1,15 @@
-import { modes } from '../lib/enums';
 import { useMainContext } from '../hooks/mainContext';
+import { modes } from '../lib/enums';
 
 const MainMenu: React.FC = () => {
-    const {
-        navigateToStandardGame,
-        navigateToTimeGame,
-        navigateToScoreGame,
-        navigateToMarathonGame,
-        navigateToOptions,
-    } = useMainContext();
+    const { navigateToQuiz, navigateToOptions } = useMainContext();
 
     return (
         <section className='main-menu'>
             <h1>Trivia Quiz</h1>
-            <button onClick={navigateToStandardGame}>Standard</button>
-            <button onClick={navigateToTimeGame}>Time Attack</button>
-            <button onClick={navigateToScoreGame}>Score</button>
-            <button onClick={navigateToMarathonGame}>Marathon</button>
+            <button onClick={() => navigateToQuiz(modes.Standard)}>Standard</button>
+            <button onClick={() => navigateToQuiz(modes.Time)}>Timed</button>
+            <button onClick={() => navigateToQuiz(modes.Marathon)}>Marathon</button>
             <button onClick={navigateToOptions}>Options</button>
         </section>
     );
