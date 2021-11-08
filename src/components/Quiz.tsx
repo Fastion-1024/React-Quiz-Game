@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useMainContext } from '../hooks/mainContext';
 import useDecodeURIFetch from '../hooks/useDecodeURIFetch';
 import { modes } from '../lib/enums';
 import { IAnswer } from '../lib/interfaces';
 import QuestionCard from './QuestionCard';
 import ResultsCard from './ResultsCard';
+import useTimer from '../hooks/useTimer';
 
 interface IProps {
     url: string;
@@ -19,6 +20,10 @@ const Quiz: React.FC<IProps> = ({ url, mode }) => {
     const [gameOver, setGameOver] = useState(false);
     const [userAnswers, setUserAnswers] = useState<IAnswer[]>([]);
 
+    const [timeRemaining, isTimerRunning, startTimer, stopTimer, resetTimer] = useTimer(20, () =>
+        checkAnswer('')
+    );
+
     // --- Context ---
     const { navigateToMainMenu } = useMainContext();
 
@@ -28,7 +33,7 @@ const Quiz: React.FC<IProps> = ({ url, mode }) => {
         if (!questions) return;
 
         const correct = questions[index].correct_answer === answer;
-        if (correct) setScore((prev) => prev + 1);
+        if (correct) addScore();
 
         const answerObj = {
             question: questions[index].question,
@@ -52,6 +57,34 @@ const Quiz: React.FC<IProps> = ({ url, mode }) => {
             setGameOver(true);
         }
     };
+
+    const addScore = () => {
+        switch (mode) {
+            case modes.Standard:
+                setScore((prev) => prev + 1);
+                break;
+
+            case modes.Time:
+                setScore((prev) => prev + Math.max(0, timeRemaining));
+                break;
+
+            default:
+                throw new Error('No matching mode found!');
+        }
+    };
+
+    useEffect(() => {
+        if (mode === modes.Time && !isTimerRunning) {
+            startTimer();
+        }
+    }, []);
+
+    useEffect(() => {
+        if (mode === modes.Time && isTimerRunning) {
+            resetTimer();
+            startTimer();
+        }
+    }, [index]);
 
     // --- Render ---
     if (error) {
@@ -104,7 +137,7 @@ const Quiz: React.FC<IProps> = ({ url, mode }) => {
                 <h4>Score:- {score}</h4>
                 <div className='progressbar-container'>
                     <div className='progressbar-filler'>
-                        <span className='progressbar-label'></span>
+                        <span className='progressbar-label'>{timeRemaining}</span>
                     </div>
                 </div>
                 <QuestionCard
