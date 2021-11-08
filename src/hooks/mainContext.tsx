@@ -7,6 +7,7 @@ type ContextType = {
     activeComponent: components;
     gameOptions: IGameOptions;
     fetchURL: string;
+    gameMode: modes;
     navigateToMainMenu: () => void;
     navigateToOptions: () => void;
     navigateToQuiz: (mode: modes) => void;
@@ -66,6 +67,7 @@ const AppProvider: React.FC<React.ReactNode> = ({ children }) => {
                 activeComponent,
                 gameOptions,
                 fetchURL,
+                gameMode,
                 navigateToMainMenu,
                 navigateToOptions,
                 navigateToQuiz,
