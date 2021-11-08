@@ -15,6 +15,7 @@ function App() {
             {activeComponent === components.Standard_Quiz && (
                 <Quiz url={fetchURL} mode={modes.Standard} />
             )}
+            {activeComponent === components.Time_Quiz && <Quiz url={fetchURL} mode={modes.Time} />}
         </main>
     );
 }
