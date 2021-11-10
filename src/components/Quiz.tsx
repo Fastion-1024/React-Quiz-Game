@@ -20,9 +20,13 @@ const Quiz: React.FC<IProps> = ({ url, mode }) => {
     const [gameOver, setGameOver] = useState(false);
     const [userAnswers, setUserAnswers] = useState<IAnswer[]>([]);
 
+    // --- State - Timed Mode ---
     const [timeRemaining, isTimerRunning, startTimer, stopTimer, resetTimer] = useTimer(20, () =>
         checkAnswer('')
     );
+
+    // --- State - Marathon Mode ---
+    const [lives, setLives] = useState(5);
 
     // --- Context ---
     const { navigateToMainMenu } = useMainContext();
@@ -33,7 +37,15 @@ const Quiz: React.FC<IProps> = ({ url, mode }) => {
         if (!questions) return;
 
         const correct = questions[index].correct_answer === answer;
-        if (correct) addScore();
+        if (correct) {
+            addScore();
+        }
+
+        if (!correct && mode === modes.Marathon) {
+            const newLives = lives - 1;
+            if (newLives >= 0) setLives(newLives);
+            else setGameOver(true);
+        }
 
         const answerObj = {
             question: questions[index].question,
@@ -68,6 +80,10 @@ const Quiz: React.FC<IProps> = ({ url, mode }) => {
                 setScore((prev) => prev + Math.max(0, timeRemaining));
                 break;
 
+            case modes.Marathon:
+                setScore((prev) => prev + lives * 5);
+                break;
+
             default:
                 throw new Error('No matching mode found!');
         }
@@ -75,12 +91,6 @@ const Quiz: React.FC<IProps> = ({ url, mode }) => {
 
     useEffect(() => {
         if (mode === modes.Time && !isTimerRunning) {
-            startTimer();
-        }
-    }, []);
-
-    useEffect(() => {
-        if (mode === modes.Time && isTimerRunning) {
             resetTimer();
             startTimer();
         }
@@ -140,6 +150,23 @@ const Quiz: React.FC<IProps> = ({ url, mode }) => {
                         <span className='progressbar-label'>{timeRemaining}</span>
                     </div>
                 </div>
+                <QuestionCard
+                    question={questions[index]}
+                    userAnswer={userAnswers[index]}
+                    callback={checkAnswer}
+                />
+            </div>
+        );
+    }
+
+    if (mode === modes.Marathon) {
+        return (
+            <div>
+                <h4>
+                    {index + 1} / {questions.length}
+                </h4>
+                <h4>Score:- {score}</h4>
+                <h5>{lives}</h5>
                 <QuestionCard
                     question={questions[index]}
                     userAnswer={userAnswers[index]}

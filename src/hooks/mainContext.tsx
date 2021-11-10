@@ -40,6 +40,12 @@ const AppProvider: React.FC<React.ReactNode> = ({ children }) => {
     const navigateToQuiz = (mode: modes): void => {
         setActiveComponent(components.Quiz);
         setGameMode(mode);
+
+        if (mode === modes.Marathon) {
+            setFetchURL(
+                getFetchURL({ ...gameOptions, category: '', type: 'multiple', amount: 50 })
+            );
+        }
     };
 
     const updateGameOptions = (gameOptions: IGameOptions) => {
@@ -51,8 +57,9 @@ const AppProvider: React.FC<React.ReactNode> = ({ children }) => {
         let paramsObj = {};
 
         if (gameOptions.category) paramsObj = { ...paramsObj, category: gameOptions.category };
-        if (gameOptions.category) paramsObj = { ...paramsObj, difficulty: gameOptions.difficulty };
-        if (gameOptions.category) paramsObj = { ...paramsObj, type: gameOptions.type };
+        if (gameOptions.difficulty)
+            paramsObj = { ...paramsObj, difficulty: gameOptions.difficulty };
+        if (gameOptions.type) paramsObj = { ...paramsObj, type: gameOptions.type };
         paramsObj = { ...paramsObj, amount: gameOptions.amount };
         paramsObj = { ...paramsObj, encode: 'url3986' };
         const params = new URLSearchParams(paramsObj);
