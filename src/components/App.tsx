@@ -9,7 +9,7 @@ import { useMainContext } from '../hooks/mainContext';
 function App() {
     const { activeComponent, fetchURL, gameMode } = useMainContext();
     return (
-        <main>
+        <main className='h-screen w-screen flex justify-center items-center'>
             {activeComponent === components.Main_Menu && <MainMenu />}
             {activeComponent === components.Options && <Options />}
             {activeComponent === components.Quiz && <Quiz url={fetchURL} mode={gameMode} />}

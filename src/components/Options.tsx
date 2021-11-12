@@ -14,10 +14,13 @@ const Options: React.FC = () => {
     };
 
     return (
-        <section className='mode-options'>
-            <div>
-                <label htmlFor='categories'>Select Category</label>
+        <section className='flex flex-col justify-center h-full w-full space-y-5 px-5'>
+            <div className='flex flex-col'>
+                <label className='text-center pr-4' htmlFor='categories'>
+                    Select Category
+                </label>
                 <select
+                    className='py-1 text-center rounded-lg'
                     id='categories'
                     value={options.category}
                     onChange={(e) => setOptions({ ...options, category: e.target.value })}>
@@ -28,9 +31,12 @@ const Options: React.FC = () => {
                         })}
                 </select>
             </div>
-            <div>
-                <label htmlFor='difficulty'>Select Difficulty</label>
+            <div className='flex flex-col'>
+                <label className='text-center pr-4' htmlFor='difficulty'>
+                    Select Difficulty
+                </label>
                 <select
+                    className='py-1 text-center rounded-lg'
                     id='difficulty'
                     value={options.difficulty}
                     onChange={(e) => setOptions({ ...options, difficulty: e.target.value })}>
@@ -40,9 +46,12 @@ const Options: React.FC = () => {
                     <option value='hard'>Hard</option>
                 </select>
             </div>
-            <div>
-                <label htmlFor='type'>Select Type</label>
+            <div className='flex flex-col'>
+                <label className='text-center pr-4' htmlFor='type'>
+                    Select Type
+                </label>
                 <select
+                    className='py-1 text-center rounded-lg'
                     id='type'
                     value={options.type}
                     onChange={(e) => setOptions({ ...options, type: e.target.value })}>
@@ -51,9 +60,12 @@ const Options: React.FC = () => {
                     <option value='boolean'>True / False</option>
                 </select>
             </div>
-            <div>
-                <label htmlFor='number'>Select Number of Questions</label>
+            <div className='flex flex-col'>
+                <label className='text-center pr-4' htmlFor='number'>
+                    Select Number of Questions
+                </label>
                 <select
+                    className='py-1 text-center rounded-lg'
                     id='number'
                     value={options.amount}
                     onChange={(e) =>
@@ -67,7 +79,9 @@ const Options: React.FC = () => {
                     <option value={20}>20</option>
                 </select>
             </div>
-            <button onClick={returnToMainMenu}>Back</button>
+            <button className='btn-standard' onClick={returnToMainMenu}>
+                Back
+            </button>
         </section>
     );
 };

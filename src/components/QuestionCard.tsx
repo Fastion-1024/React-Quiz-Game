@@ -9,19 +9,22 @@ interface IProps {
 
 const QuestionCard: React.FC<IProps> = ({ question, userAnswer, callback }) => {
     return (
-        <div>
-            <h1>{question.question}</h1>
-            {question.shuffled_answers?.map((item, index) => {
-                return (
-                    <button
-                        key={index}
-                        value={item}
-                        disabled={userAnswer ? true : false}
-                        onClick={(e) => callback(e.currentTarget.value)}>
-                        {item}
-                    </button>
-                );
-            })}
+        <div className='flex flex-col justify-center h-full'>
+            <h1 className='text-center text-2xl font-bold my-10 px-4'>{question.question}</h1>
+            <div className='flex flex-col h-full space-y-5'>
+                {question.shuffled_answers?.map((item, index) => {
+                    return (
+                        <button
+                            className='btn-standard'
+                            key={index}
+                            value={item}
+                            disabled={userAnswer ? true : false}
+                            onClick={(e) => callback(e.currentTarget.value)}>
+                            {item}
+                        </button>
+                    );
+                })}
+            </div>
         </div>
     );
 };

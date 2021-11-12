@@ -6,6 +6,8 @@ import { IAnswer } from '../lib/interfaces';
 import QuestionCard from './QuestionCard';
 import ResultsCard from './ResultsCard';
 import useTimer from '../hooks/useTimer';
+import TimerBar from './TimerBar';
+import LifeBar from './LifeBar';
 
 interface IProps {
     url: string;
@@ -90,7 +92,7 @@ const Quiz: React.FC<IProps> = ({ url, mode }) => {
     };
 
     useEffect(() => {
-        if (mode === modes.Time && !isTimerRunning) {
+        if (mode === modes.Time) {
             resetTimer();
             startTimer();
         }
@@ -115,68 +117,37 @@ const Quiz: React.FC<IProps> = ({ url, mode }) => {
 
     if (gameOver) {
         return (
-            <div>
+            <div className='flex flex-col h-full p-5 space-y-5'>
                 <ResultsCard score={score} userAnswers={userAnswers} />
-                <button onClick={navigateToMainMenu}>Back</button>
+                <button className='btn-standard' onClick={navigateToMainMenu}>
+                    Back
+                </button>
             </div>
         );
     }
 
-    if (mode === modes.Standard) {
-        return (
-            <div>
+    return (
+        <div className='flex flex-col justify-evenly h-full w-full'>
+            <div className='flex flex-row justify-between px-5 py-1 bg-gray-400'>
                 <h4>
                     {index + 1} / {questions.length}
                 </h4>
                 <h4>Score:- {score}</h4>
-                <QuestionCard
-                    question={questions[index]}
-                    userAnswer={userAnswers[index]}
-                    callback={checkAnswer}
-                />
             </div>
-        );
-    }
 
-    if (mode === modes.Time) {
-        return (
-            <div>
-                <h4>
-                    {index + 1} / {questions.length}
-                </h4>
-                <h4>Score:- {score}</h4>
-                <div className='progressbar-container'>
-                    <div className='progressbar-filler'>
-                        <span className='progressbar-label'>{timeRemaining}</span>
-                    </div>
-                </div>
-                <QuestionCard
-                    question={questions[index]}
-                    userAnswer={userAnswers[index]}
-                    callback={checkAnswer}
-                />
-            </div>
-        );
-    }
+            {/* Time Mode Components */}
+            {mode === modes.Time && <TimerBar currentTime={timeRemaining} maxTime={20} />}
 
-    if (mode === modes.Marathon) {
-        return (
-            <div>
-                <h4>
-                    {index + 1} / {questions.length}
-                </h4>
-                <h4>Score:- {score}</h4>
-                <h5>{lives}</h5>
-                <QuestionCard
-                    question={questions[index]}
-                    userAnswer={userAnswers[index]}
-                    callback={checkAnswer}
-                />
-            </div>
-        );
-    }
+            {/* Marathon Mode Components */}
+            {mode === modes.Marathon && <LifeBar currentLives={lives} maxLives={5} />}
 
-    return <div></div>;
+            <QuestionCard
+                question={questions[index]}
+                userAnswer={userAnswers[index]}
+                callback={checkAnswer}
+            />
+        </div>
+    );
 };
 
 export default Quiz;
