@@ -3,6 +3,50 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom Utilities */
+@layer utilities {
+    @variants responsive {
+        .text-shadow {
+            text-shadow: 2px 2px 4px black;
+        }
+        .text-shadow-md {
+            text-shadow: 4px 4px 8px black;
+        }
+        .text-shadow-lg {
+            text-shadow: 15px 15px 30px black;
+        }
+        .text-shadow-none {
+            text-shadow: none;
+        }
+        .text-shadow-multi {
+            text-shadow: 2px 2px 4px black, 4px 2px 0px black, 6px 0px 0px rgba(0, 0, 0, 0.8);
+        }
+    }
+}
+
+.main-menu-container {
+    @apply relative h-full w-full max-w-screen-md max-h-screen-lg overflow-hidden bg-gray-500;
+}
+
+.main-menu-container::before {
+    content: '';
+    @apply absolute w-6/5 h-3/5 top-2/4 left-0 z-10 transform rotate-10 -translate-x-16 -translate-y-1/2 bg-gray-200;
+}
+
 .btn-standard {
-    @apply rounded-full mx-3 text-lg py-1 bg-purple-200 hover:bg-purple-300;
+    @apply rounded-tr-full rounded-br-full mx-3 text-2xl sm:text-3xl md:text-4xl py-3 z-30 bg-gray-400 hover:bg-gray-700 hover:text-white;
+}
+
+div .btn-standard:nth-child(2) {
+    @apply transform translate-x-16;
+}
+
+.visually-hidden:not(:focus):not(:active) {
+    clip: rect(0 0 0 0);
+    clip-path: inset(100%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
 }
