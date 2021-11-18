@@ -28,13 +28,13 @@ const MainMenu: React.FC = () => {
 
     return (
         <section className='main-menu-container'>
-            <div className='absolute top-1/2 left-0 z-40 transform -translate-y-1/2 -translate-x-32 h-96 w-96 rounded-full bg-gray-500 border-20 border-gray-700'>
+            <div className='absolute top-1/2 left-0 z-20 transform -translate-y-1/2 -translate-x-24 sm:-translate-x-28 md:-translate-x-32 h-64 w-64 sm:h-80 sm:w-80 md:h-96 md:w-96 rounded-full border-12 sm:border-16 md:border-20 border-gray-700 bg-gray-500 '>
                 {getIcon()}
             </div>
             <h1 className='text-center text-5xl sm:text-6xl md:text-7xl text-white font-black filter text-shadow-multi my-8'>
                 Trivia Quiz
             </h1>
-            <div className='absolute top-1/2 left-1/4 z-30 w-2/3 transform -translate-y-1/2 -translate-x-8 flex flex-col space-y-10'>
+            <div className='absolute top-1/2 left-20 md:left-32 z-10 w-2/3 transform -translate-y-1/2 flex flex-col space-y-6 sm:space-y-8 md:space-y-10'>
                 <button
                     className='btn-standard'
                     onClick={() => navigateToQuiz(modes.Standard)}
@@ -54,7 +54,7 @@ const MainMenu: React.FC = () => {
                     Marathon
                 </button>
             </div>
-            <div className='absolute bottom-0 w-full flex justify-between p-5'>
+            <div className='absolute bottom-0 w-full flex justify-between p-5 z-10'>
                 <button
                     className='text-5xl sm:text-6xl md:text-7xl text-white'
                     onClick={navigateToOptions}>
