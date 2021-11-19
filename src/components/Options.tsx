@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useMainContext } from '../hooks/mainContext';
 import useFetch from '../hooks/useFetch';
 import { ICategories } from '../lib/interfaces';
+import { RiArrowGoBackFill } from 'react-icons/ri';
 
 const Options: React.FC = () => {
     const { data, error } = useFetch<ICategories>('https://opentdb.com/api_category.php');
@@ -14,73 +15,221 @@ const Options: React.FC = () => {
     };
 
     return (
-        <section className='flex flex-col justify-center h-full w-full space-y-5 px-5'>
-            <div className='flex flex-col'>
-                <label className='text-center pr-4' htmlFor='categories'>
-                    Select Category
-                </label>
-                <select
-                    className='py-1 text-center rounded-lg'
-                    id='categories'
-                    value={options.category}
-                    onChange={(e) => setOptions({ ...options, category: e.target.value })}>
-                    <option value=''>Any Category</option>
-                    {data &&
-                        data.trivia_categories.map((category) => {
-                            return <option value={category.id}>{category.name}</option>;
-                        })}
-                </select>
+        <section className='options-container'>
+            <h1 className='text-center text-5xl sm:text-6xl md:text-7xl text-white font-black filter text-shadow-multi my-4 sm:my-6'>
+                Options
+            </h1>
+
+            {/* Category */}
+            <label
+                className='block text-center text-2xl sm:text-3xl mt-8 mb-2 sm:mb-4'
+                htmlFor='categories'>
+                Select Category
+            </label>
+            <select
+                className='block py-2 text-center rounded-lg text-xl bg-gray-300 mx-auto max-w-full'
+                id='categories'
+                value={options.category}
+                onChange={(e) => setOptions({ ...options, category: e.target.value })}>
+                <option value=''>Any Category</option>
+                {data &&
+                    data.trivia_categories.map((category) => {
+                        return <option value={category.id}>{category.name}</option>;
+                    })}
+            </select>
+
+            {/* Difficulty */}
+            <h2 className='text-center text-2xl sm:text-3xl mt-8 mb-2 sm:mb-4'>
+                Select Difficulty
+            </h2>
+            <div className='flex justify-center items-center'>
+                <div className='inline-flex rounded-lg'>
+                    <input
+                        type='radio'
+                        name='difficulty'
+                        id='difficultyAny'
+                        value=''
+                        hidden
+                        checked={options.difficulty === ''}
+                        onChange={(e) => setOptions({ ...options, difficulty: e.target.value })}
+                    />
+                    <label
+                        htmlFor='difficultyAny'
+                        className='radio disable-select text-center text-l sm:text-xl self-center py-2 px-4 rounded-lg cursor-pointer hover:opacity-75 bg-gray-300'>
+                        Any
+                    </label>
+                </div>
+                <div className='inline-flex rounded-lg'>
+                    <input
+                        type='radio'
+                        name='difficulty'
+                        id='difficultyEasy'
+                        value='easy'
+                        hidden
+                        checked={options.difficulty === 'easy'}
+                        onChange={(e) => setOptions({ ...options, difficulty: e.target.value })}
+                    />
+                    <label
+                        htmlFor='difficultyEasy'
+                        className='radio disable-select text-center text-l sm:text-xl self-center py-2 px-4 rounded-lg cursor-pointer hover:opacity-75 bg-gray-300'>
+                        Easy
+                    </label>
+                </div>
+                <div className='inline-flex rounded-lg'>
+                    <input
+                        type='radio'
+                        name='difficulty'
+                        id='difficultyMedium'
+                        value='medium'
+                        hidden
+                        checked={options.difficulty === 'medium'}
+                        onChange={(e) => setOptions({ ...options, difficulty: e.target.value })}
+                    />
+                    <label
+                        htmlFor='difficultyMedium'
+                        className='radio disable-select text-center text-l sm:text-xl self-center py-2 px-4 rounded-lg cursor-pointer hover:opacity-75 bg-gray-300'>
+                        Medium
+                    </label>
+                </div>
+                <div className='inline-flex rounded-lg'>
+                    <input
+                        type='radio'
+                        name='difficulty'
+                        id='difficultyHard'
+                        value='hard'
+                        hidden
+                        checked={options.difficulty === 'hard'}
+                        onChange={(e) => setOptions({ ...options, difficulty: e.target.value })}
+                    />
+                    <label
+                        htmlFor='difficultyHard'
+                        className='radio disable-select text-center text-l sm:text-xl self-center py-2 px-4 rounded-lg cursor-pointer hover:opacity-75 bg-gray-300'>
+                        Hard
+                    </label>
+                </div>
             </div>
-            <div className='flex flex-col'>
-                <label className='text-center pr-4' htmlFor='difficulty'>
-                    Select Difficulty
-                </label>
-                <select
-                    className='py-1 text-center rounded-lg'
-                    id='difficulty'
-                    value={options.difficulty}
-                    onChange={(e) => setOptions({ ...options, difficulty: e.target.value })}>
-                    <option value=''>Any Difficulty</option>
-                    <option value='easy'>Easy</option>
-                    <option value='medium'>Medium</option>
-                    <option value='hard'>Hard</option>
-                </select>
+
+            {/* Type */}
+            <h2 className='text-center text-2xl sm:text-3xl mt-8 mb-2 sm:mb-4'>Select Type</h2>
+            <div className='flex justify-center items-center'>
+                <div className='inline-flex rounded-lg'>
+                    <input
+                        type='radio'
+                        name='type'
+                        id='typeAny'
+                        value=''
+                        hidden
+                        checked={options.type === ''}
+                        onChange={(e) => setOptions({ ...options, type: e.target.value })}
+                    />
+                    <label
+                        htmlFor='typeAny'
+                        className='radio disable-select text-center text-l sm:text-xl self-center py-2 px-4 rounded-lg cursor-pointer hover:opacity-75 bg-gray-300'>
+                        Any
+                    </label>
+                </div>
+                <div className='inline-flex rounded-lg'>
+                    <input
+                        type='radio'
+                        name='type'
+                        id='typeMultiple'
+                        value='multiple'
+                        hidden
+                        checked={options.type === 'multiple'}
+                        onChange={(e) => setOptions({ ...options, type: e.target.value })}
+                    />
+                    <label
+                        htmlFor='typeMultiple'
+                        className='radio disable-select text-center text-l sm:text-xl self-center py-2 px-4 rounded-lg cursor-pointer hover:opacity-75 bg-gray-300'>
+                        Multiple Choice
+                    </label>
+                </div>
+                <div className='inline-flex rounded-lg'>
+                    <input
+                        type='radio'
+                        name='type'
+                        id='typeBoolean'
+                        value='boolean'
+                        hidden
+                        checked={options.type === 'boolean'}
+                        onChange={(e) => setOptions({ ...options, type: e.target.value })}
+                    />
+                    <label
+                        htmlFor='typeBoolean'
+                        className='radio disable-select text-center text-l sm:text-xl self-center py-2 px-4 rounded-lg cursor-pointer hover:opacity-75 bg-gray-300'>
+                        True / False
+                    </label>
+                </div>
             </div>
-            <div className='flex flex-col'>
-                <label className='text-center pr-4' htmlFor='type'>
-                    Select Type
-                </label>
-                <select
-                    className='py-1 text-center rounded-lg'
-                    id='type'
-                    value={options.type}
-                    onChange={(e) => setOptions({ ...options, type: e.target.value })}>
-                    <option value=''>Any Type</option>
-                    <option value='multiple'>Multiple Choice</option>
-                    <option value='boolean'>True / False</option>
-                </select>
+
+            {/* No of Questions */}
+
+            <h2 className='text-center text-2xl sm:text-3xl mt-8 mb-2 sm:mb-4'>
+                Select Number of Questions
+            </h2>
+            <div className='flex justify-center items-center'>
+                <div className='inline-flex rounded-lg'>
+                    <input
+                        type='radio'
+                        name='amount'
+                        id='amountTen'
+                        value={10}
+                        hidden
+                        checked={options.amount === 10}
+                        onChange={(e) =>
+                            setOptions({ ...options, amount: parseInt(e.target.value) })
+                        }
+                    />
+                    <label
+                        htmlFor='amountTen'
+                        className='radio disable-select text-center text-l sm:text-xl self-center py-2 px-4 rounded-lg cursor-pointer hover:opacity-75 bg-gray-300'>
+                        10
+                    </label>
+                </div>
+                <div className='inline-flex rounded-lg'>
+                    <input
+                        type='radio'
+                        name='amount'
+                        id='amountFifteen'
+                        value={15}
+                        hidden
+                        checked={options.amount === 15}
+                        onChange={(e) =>
+                            setOptions({ ...options, amount: parseInt(e.target.value) })
+                        }
+                    />
+                    <label
+                        htmlFor='amountFifteen'
+                        className='radio disable-select text-center text-l sm:text-xl self-center py-2 px-4 rounded-lg cursor-pointer hover:opacity-75 bg-gray-300'>
+                        15
+                    </label>
+                </div>
+                <div className='inline-flex rounded-lg'>
+                    <input
+                        type='radio'
+                        name='amount'
+                        id='amountTwenty'
+                        value={20}
+                        hidden
+                        checked={options.amount === 20}
+                        onChange={(e) =>
+                            setOptions({ ...options, amount: parseInt(e.target.value) })
+                        }
+                    />
+                    <label
+                        htmlFor='amountTwenty'
+                        className='radio disable-select text-center text-l sm:text-xl self-center py-2 px-4 rounded-lg cursor-pointer hover:opacity-75 bg-gray-300'>
+                        20
+                    </label>
+                </div>
             </div>
-            <div className='flex flex-col'>
-                <label className='text-center pr-4' htmlFor='number'>
-                    Select Number of Questions
-                </label>
-                <select
-                    className='py-1 text-center rounded-lg'
-                    id='number'
-                    value={options.amount}
-                    onChange={(e) =>
-                        setOptions({
-                            ...options,
-                            amount: parseInt(e.target.value),
-                        })
-                    }>
-                    <option value={10}>10</option>
-                    <option value={15}>15</option>
-                    <option value={20}>20</option>
-                </select>
-            </div>
-            <button className='btn-standard' onClick={returnToMainMenu}>
-                Back
+
+            {/* Back Navigation */}
+            <button
+                className='absolute bottom-5 left-5 z-10 text-5xl sm:text-6xl md:text-7xl text-white'
+                onClick={returnToMainMenu}>
+                <RiArrowGoBackFill aria-hidden={true} focusable={false} />
+                <span className='visually-hidden'>Back</span>
             </button>
         </section>
     );
