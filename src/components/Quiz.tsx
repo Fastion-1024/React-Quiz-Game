@@ -59,7 +59,7 @@ const Quiz: React.FC<IProps> = ({ url, mode }) => {
 
         setTimeout(() => {
             nextQuestion();
-        }, 500);
+        }, 1000);
     };
 
     const nextQuestion = (): void => {
@@ -127,13 +127,12 @@ const Quiz: React.FC<IProps> = ({ url, mode }) => {
     }
 
     return (
-        <div className='flex flex-col justify-evenly h-full w-full'>
-            <div className='flex flex-row justify-between px-5 py-1 bg-gray-400'>
-                <h4>
-                    {index + 1} / {questions.length}
-                </h4>
-                <h4>Score:- {score}</h4>
-            </div>
+        <div className='quiz-container'>
+            <QuestionCard
+                question={questions[index]}
+                userAnswer={userAnswers[index]}
+                callback={checkAnswer}
+            />
 
             {/* Time Mode Components */}
             {mode === modes.Time && <TimerBar currentTime={timeRemaining} maxTime={20} />}
@@ -141,11 +140,12 @@ const Quiz: React.FC<IProps> = ({ url, mode }) => {
             {/* Marathon Mode Components */}
             {mode === modes.Marathon && <LifeBar currentLives={lives} maxLives={5} />}
 
-            <QuestionCard
-                question={questions[index]}
-                userAnswer={userAnswers[index]}
-                callback={checkAnswer}
-            />
+            <div className='flex flex-row justify-between px-5 py-1 bg-gray-400'>
+                <h4>
+                    {index + 1} / {questions.length}
+                </h4>
+                <h4>Score:- {score}</h4>
+            </div>
         </div>
     );
 };
