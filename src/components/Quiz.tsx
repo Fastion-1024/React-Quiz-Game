@@ -134,9 +134,6 @@ const Quiz: React.FC<IProps> = ({ url, mode }) => {
                 callback={checkAnswer}
             />
 
-            {/* Time Mode Components */}
-            {mode === modes.Time && <TimerBar currentTime={timeRemaining} maxTime={20} />}
-
             {/* Marathon Mode Components */}
             {mode === modes.Marathon && <LifeBar currentLives={lives} maxLives={5} />}
 
@@ -153,6 +150,9 @@ const Quiz: React.FC<IProps> = ({ url, mode }) => {
                 </h4> */}
                 <h4>{score}</h4>
             </div>
+
+            {/* Time Mode Components */}
+            {mode === modes.Time && <TimerBar currentTime={timeRemaining} maxTime={20} />}
         </div>
     );
 };
