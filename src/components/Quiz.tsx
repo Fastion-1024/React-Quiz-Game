@@ -140,11 +140,18 @@ const Quiz: React.FC<IProps> = ({ url, mode }) => {
             {/* Marathon Mode Components */}
             {mode === modes.Marathon && <LifeBar currentLives={lives} maxLives={5} />}
 
-            <div className='flex flex-row justify-between px-5 py-1 bg-gray-400'>
+            {/* <div className='flex flex-row justify-between px-5 py-1 bg-gray-400'>
                 <h4>
                     {index + 1} / {questions.length}
                 </h4>
                 <h4>Score:- {score}</h4>
+            </div> */}
+
+            <div className='flex flex-row justify-around bg-gray-800 text-gray-100 text-4xl w-1/2 mx-auto py-2 rounded-t-full'>
+                {/* <h4>
+                    {index + 1} / {questions.length}
+                </h4> */}
+                <h4>{score}</h4>
             </div>
         </div>
     );
