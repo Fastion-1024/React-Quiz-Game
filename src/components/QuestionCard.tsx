@@ -25,20 +25,33 @@ const QuestionCard: React.FC<IProps> = ({ question, userAnswer, callback }) => {
                             value={item}
                             disabled={userAnswer ? true : false}
                             onClick={(e) => callback(e.currentTarget.value)}>
-                            <span className='block bg-gray-500 text-gray-100 rounded-lg py-2 my-auto font-semibold text-lg sm:text-xl text-shadow'>
+                            <span className='block my-auto py-2 rounded-lg text-lg sm:text-xl text-shadow text-gray-100 font-semibold bg-gray-500'>
                                 {item}
                             </span>
-                            <span className='flex justify-center bg-gray-800 text-white font-semibold h-6 w-1/2 mx-auto rounded-b-full'>
-                                {userAnswer ? (
-                                    userAnswer.correctAnswer === item ? (
+
+                            {userAnswer ? (
+                                // Answer Indicator
+                                <span
+                                    // Correct bg color is green. Wrong bg color is red
+                                    className={`flex justify-cente text-white font-semibold h-6 w-1/2 mx-auto rounded-b-full ${
+                                        userAnswer.correctAnswer === item
+                                            ? 'bg-green-800'
+                                            : 'bg-red-800'
+                                    }`}>
+                                    {userAnswer.correctAnswer === item ? (
+                                        // Correct Icon
                                         <FaCheck className='m-auto' />
                                     ) : (
+                                        // Wrong Icon
                                         <FaTimes className='m-auto' />
-                                    )
-                                ) : (
-                                    letters.charAt(index)
-                                )}
-                            </span>
+                                    )}
+                                </span>
+                            ) : (
+                                // Default Indicator
+                                <span className='flex justify-center bg-gray-800 text-white font-semibold h-6 w-1/2 mx-auto rounded-b-full'>
+                                    {letters.charAt(index)}
+                                </span>
+                            )}
                         </button>
                     );
                 })}
