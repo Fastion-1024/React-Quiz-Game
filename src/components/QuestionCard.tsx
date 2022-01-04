@@ -21,10 +21,10 @@ const QuestionCard: React.FC<IProps> = ({
 
     return (
         <div className='flex flex-col justify-center h-full'>
-            <h1 className='text-center text-xl sm:text-2xl md:text-3xl font-bold p-4 z-10 bg-gray-800 w-full sm:w-4/5 mx-auto rounded-b-3xl text-gray-100'>
+            <h1 className='w-full sm:w-4/5 mx-auto p-4 md:p-6 break-words text-center text-xl sm:text-2xl md:text-3xl font-bold sm:rounded-b-3xl bg-gray-800 text-gray-100'>
                 {question.question}
             </h1>
-            <div className='flex flex-row justify-around bg-gray-500 text-gray-100 text-xl md:text-3xl w-1/2 mx-auto py-2 rounded-b-full z-10 text-shadow'>
+            <div className='flex flex-row justify-around w-1/2 mx-auto py-1 md:py-2 text-xl sm:text-2xl md:text-3xl rounded-b-full bg-gray-500 text-gray-100 text-shadow'>
                 <h4>
                     {questionNum} / {questionCount}
                 </h4>

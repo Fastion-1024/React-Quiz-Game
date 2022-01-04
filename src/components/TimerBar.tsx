@@ -10,10 +10,10 @@ const TimerBar: React.FC<IProps> = ({ currentTime, maxTime }) => {
 
     return (
         // Container / Background
-        <div className='h-5 bg-gray-800 relative'>
+        <div className='h-3 sm:h-5 bg-gray-800 relative'>
             <div
                 style={{ width: `${widthPercent}%` }}
-                className='h-5 bg-gray-600 transition-{width} duration-1000 ease-linear'
+                className='h-3 sm:h-5 bg-gray-600 transition-{width} duration-1000 ease-linear'
             />
         </div>
     );

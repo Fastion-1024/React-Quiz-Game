@@ -10,7 +10,7 @@ const LifeBar: React.FC<IProps> = ({ currentLives, maxLives }) => {
     const lives = Array.from(Array(maxLives).keys());
 
     return (
-        <div className='flex flex-row justify-center my-2 space-x-1'>
+        <div className='flex flex-row justify-center space-x-1 my-1 md:my-2 text-xl sm:text-2xl md:text-3xl'>
             {lives.map((life, index) => {
                 return index < currentLives ? (
                     <FaHeart className='fill-current text-red-500' />
