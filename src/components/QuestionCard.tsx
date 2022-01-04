@@ -5,17 +5,30 @@ import { FaCheck, FaTimes } from 'react-icons/fa';
 interface IProps {
     question: IQuestion;
     userAnswer: IAnswer | undefined;
+    questionNum: number;
+    questionCount: number;
     callback: (answer: string) => void;
 }
 
-const QuestionCard: React.FC<IProps> = ({ question, userAnswer, callback }) => {
+const QuestionCard: React.FC<IProps> = ({
+    question,
+    userAnswer,
+    questionNum,
+    questionCount,
+    callback,
+}) => {
     const letters = 'ABCD';
 
     return (
         <div className='flex flex-col justify-center h-full'>
-            <h1 className='text-center text-2xl sm:text-3xl md:text-4xl font-bold my-5 px-4 z-10'>
+            <h1 className='text-center text-xl sm:text-2xl md:text-3xl font-bold p-4 z-10 bg-gray-800 w-full sm:w-4/5 mx-auto rounded-b-3xl text-gray-100'>
                 {question.question}
             </h1>
+            <div className='flex flex-row justify-around bg-gray-500 text-gray-100 text-xl md:text-3xl w-1/2 mx-auto py-2 rounded-b-full z-10 text-shadow'>
+                <h4>
+                    {questionNum} / {questionCount}
+                </h4>
+            </div>
             <div className='flex flex-col h-full space-y-10 z-10 justify-center items-center'>
                 {question.shuffled_answers?.map((item, index) => {
                     return (

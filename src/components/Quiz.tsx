@@ -127,10 +127,12 @@ const Quiz: React.FC<IProps> = ({ url, mode }) => {
     }
 
     return (
-        <div className='quiz-container'>
+        <div className='relative flex flex-col h-full w-full max-w-screen-md max-h-screen-lg overflow-hidden bg-gray-200'>
             <QuestionCard
                 question={questions[index]}
                 userAnswer={userAnswers[index]}
+                questionNum={index + 1}
+                questionCount={questions.length}
                 callback={checkAnswer}
             />
 
