@@ -13,7 +13,9 @@ const TimerBar: React.FC<IProps> = ({ currentTime, maxTime }) => {
         <div className='h-3 sm:h-5 bg-gray-800 relative'>
             <div
                 style={{ width: `${widthPercent}%` }}
-                className='h-3 sm:h-5 bg-gray-600 transition-{width} duration-1000 ease-linear'
+                className={`h-3 sm:h-5 bg-gray-500 transition-{width} duration-1000 ease-linear ${
+                    currentTime < 5 ? 'animate-pulse-full' : 'animate-none'
+                }`}
             />
         </div>
     );
