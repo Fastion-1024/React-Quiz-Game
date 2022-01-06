@@ -22,12 +22,12 @@ const Options: React.FC = () => {
 
             {/* Category */}
             <label
-                className='block text-center text-2xl sm:text-3xl mt-8 mb-2 sm:mb-4'
+                className='block text-center text-2xl sm:text-3xl mt-8 mb-2 sm:mb-4 text-gray-800 font-bold'
                 htmlFor='categories'>
                 Select Category
             </label>
             <select
-                className='block py-2 text-center rounded-lg text-xl bg-gray-300 mx-auto max-w-full'
+                className='block py-2 text-center rounded-lg text-xl bg-gray-300 mx-auto max-w-full border-2 border-gray-800'
                 id='categories'
                 value={options.category}
                 onChange={(e) => setOptions({ ...options, category: e.target.value })}>
@@ -39,10 +39,10 @@ const Options: React.FC = () => {
             </select>
 
             {/* Difficulty */}
-            <h2 className='text-center text-2xl sm:text-3xl mt-8 mb-2 sm:mb-4'>
+            <h2 className='text-center text-2xl sm:text-3xl mt-8 mb-2 sm:mb-4 text-gray-800 font-bold'>
                 Select Difficulty
             </h2>
-            <div className='flex justify-center items-center'>
+            <div className='flex justify-center items-center space-x-1'>
                 <div className='inline-flex rounded-lg'>
                     <input
                         type='radio'
@@ -55,7 +55,7 @@ const Options: React.FC = () => {
                     />
                     <label
                         htmlFor='difficultyAny'
-                        className='radio disable-select text-center text-l sm:text-xl self-center py-2 px-4 rounded-lg cursor-pointer hover:opacity-75 bg-gray-300'>
+                        className='radio disable-select text-center text-l sm:text-xl self-center py-2 px-4 rounded-lg cursor-pointer hover:opacity-75 bg-gray-300 border-2 border-gray-800'>
                         Any
                     </label>
                 </div>
@@ -71,7 +71,7 @@ const Options: React.FC = () => {
                     />
                     <label
                         htmlFor='difficultyEasy'
-                        className='radio disable-select text-center text-l sm:text-xl self-center py-2 px-4 rounded-lg cursor-pointer hover:opacity-75 bg-gray-300'>
+                        className='radio disable-select text-center text-l sm:text-xl self-center py-2 px-4 rounded-lg cursor-pointer hover:opacity-75 bg-gray-300 border-2 border-gray-800'>
                         Easy
                     </label>
                 </div>
@@ -87,7 +87,7 @@ const Options: React.FC = () => {
                     />
                     <label
                         htmlFor='difficultyMedium'
-                        className='radio disable-select text-center text-l sm:text-xl self-center py-2 px-4 rounded-lg cursor-pointer hover:opacity-75 bg-gray-300'>
+                        className='radio disable-select text-center text-l sm:text-xl self-center py-2 px-4 rounded-lg cursor-pointer hover:opacity-75 bg-gray-300 border-2 border-gray-800'>
                         Medium
                     </label>
                 </div>
@@ -103,15 +103,17 @@ const Options: React.FC = () => {
                     />
                     <label
                         htmlFor='difficultyHard'
-                        className='radio disable-select text-center text-l sm:text-xl self-center py-2 px-4 rounded-lg cursor-pointer hover:opacity-75 bg-gray-300'>
+                        className='radio disable-select text-center text-l sm:text-xl self-center py-2 px-4 rounded-lg cursor-pointer hover:opacity-75 bg-gray-300 border-2 border-gray-800'>
                         Hard
                     </label>
                 </div>
             </div>
 
             {/* Type */}
-            <h2 className='text-center text-2xl sm:text-3xl mt-8 mb-2 sm:mb-4'>Select Type</h2>
-            <div className='flex justify-center items-center'>
+            <h2 className='text-center text-2xl sm:text-3xl mt-8 mb-2 sm:mb-4 text-gray-800 font-bold'>
+                Select Type
+            </h2>
+            <div className='flex justify-center items-center space-x-1'>
                 <div className='inline-flex rounded-lg'>
                     <input
                         type='radio'
@@ -124,7 +126,7 @@ const Options: React.FC = () => {
                     />
                     <label
                         htmlFor='typeAny'
-                        className='radio disable-select text-center text-l sm:text-xl self-center py-2 px-4 rounded-lg cursor-pointer hover:opacity-75 bg-gray-300'>
+                        className='radio disable-select text-center text-l sm:text-xl self-center py-2 px-4 rounded-lg cursor-pointer hover:opacity-75 bg-gray-300 border-2 border-gray-800'>
                         Any
                     </label>
                 </div>
@@ -140,7 +142,7 @@ const Options: React.FC = () => {
                     />
                     <label
                         htmlFor='typeMultiple'
-                        className='radio disable-select text-center text-l sm:text-xl self-center py-2 px-4 rounded-lg cursor-pointer hover:opacity-75 bg-gray-300'>
+                        className='radio disable-select text-center text-l sm:text-xl self-center py-2 px-4 rounded-lg cursor-pointer hover:opacity-75 bg-gray-300 border-2 border-gray-800'>
                         Multiple Choice
                     </label>
                 </div>
@@ -156,7 +158,7 @@ const Options: React.FC = () => {
                     />
                     <label
                         htmlFor='typeBoolean'
-                        className='radio disable-select text-center text-l sm:text-xl self-center py-2 px-4 rounded-lg cursor-pointer hover:opacity-75 bg-gray-300'>
+                        className='radio disable-select text-center text-l sm:text-xl self-center py-2 px-4 rounded-lg cursor-pointer hover:opacity-75 bg-gray-300 border-2 border-gray-800'>
                         True / False
                     </label>
                 </div>
@@ -164,10 +166,10 @@ const Options: React.FC = () => {
 
             {/* No of Questions */}
 
-            <h2 className='text-center text-2xl sm:text-3xl mt-8 mb-2 sm:mb-4'>
+            <h2 className='text-center text-2xl sm:text-3xl mt-8 mb-2 sm:mb-4 text-gray-800 font-bold'>
                 Select Number of Questions
             </h2>
-            <div className='flex justify-center items-center'>
+            <div className='flex justify-center items-center space-x-1'>
                 <div className='inline-flex rounded-lg'>
                     <input
                         type='radio'
@@ -182,7 +184,7 @@ const Options: React.FC = () => {
                     />
                     <label
                         htmlFor='amountTen'
-                        className='radio disable-select text-center text-l sm:text-xl self-center py-2 px-4 rounded-lg cursor-pointer hover:opacity-75 bg-gray-300'>
+                        className='radio disable-select text-center text-l sm:text-xl self-center py-2 px-4 rounded-lg cursor-pointer hover:opacity-75 bg-gray-300 border-2 border-gray-800'>
                         10
                     </label>
                 </div>
@@ -200,7 +202,7 @@ const Options: React.FC = () => {
                     />
                     <label
                         htmlFor='amountFifteen'
-                        className='radio disable-select text-center text-l sm:text-xl self-center py-2 px-4 rounded-lg cursor-pointer hover:opacity-75 bg-gray-300'>
+                        className='radio disable-select text-center text-l sm:text-xl self-center py-2 px-4 rounded-lg cursor-pointer hover:opacity-75 bg-gray-300 border-2 border-gray-800'>
                         15
                     </label>
                 </div>
@@ -218,7 +220,7 @@ const Options: React.FC = () => {
                     />
                     <label
                         htmlFor='amountTwenty'
-                        className='radio disable-select text-center text-l sm:text-xl self-center py-2 px-4 rounded-lg cursor-pointer hover:opacity-75 bg-gray-300'>
+                        className='radio disable-select text-center text-l sm:text-xl self-center py-2 px-4 rounded-lg cursor-pointer hover:opacity-75 bg-gray-300 border-2 border-gray-800'>
                         20
                     </label>
                 </div>
