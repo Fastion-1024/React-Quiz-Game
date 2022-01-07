@@ -8,6 +8,7 @@ import ResultsCard from './ResultsCard';
 import useTimer from '../hooks/useTimer';
 import TimerBar from './TimerBar';
 import LifeBar from './LifeBar';
+import { RiArrowGoBackFill } from 'react-icons/ri';
 
 interface IProps {
     url: string;
@@ -117,12 +118,11 @@ const Quiz: React.FC<IProps> = ({ url, mode }) => {
 
     if (gameOver) {
         return (
-            <div className='flex flex-col h-full p-5 space-y-5'>
-                <ResultsCard score={score} userAnswers={userAnswers} />
-                <button className='btn-standard' onClick={navigateToMainMenu}>
-                    Back
-                </button>
-            </div>
+            <ResultsCard
+                score={score}
+                userAnswers={userAnswers}
+                navigateBack={navigateToMainMenu}
+            />
         );
     }
 
