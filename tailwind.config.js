@@ -44,6 +44,9 @@ module.exports = {
                     '50%': { opacity: 0.1 },
                 },
             },
+            padding: {
+                '1/4vh': '25vh',
+            },
         },
     },
     variants: {
