@@ -4,28 +4,25 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
-        "@craco/craco": "^6.4.0",
         "@testing-library/jest-dom": "^5.14.1",
         "@testing-library/react": "^11.2.7",
         "@testing-library/user-event": "^12.8.3",
-        "@types/jest": "^26.0.24",
-        "@types/node": "^12.20.36",
-        "@types/react": "^17.0.33",
-        "@types/react-dom": "^17.0.10",
+        "@types/jest": "^29.2.2",
+        "@types/node": "^18.11.9",
+        "@types/react": "^18.0.25",
+        "@types/react-dom": "^18.0.8",
         "react": "^17.0.2",
         "react-dom": "^17.0.2",
         "react-icons": "^4.3.1",
-        "react-scripts": "4.0.3",
         "typescript": "^4.4.4",
         "web-vitals": "^1.1.2"
     },
     "scripts": {
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "preview": "vite preview",
         "predeploy": "npm run build",
-        "deploy": "gh-pages -d build",
-        "start": "craco start",
-        "build": "craco build",
-        "test": "craco test",
-        "eject": "react-scripts eject"
+        "deploy": "gh-pages -d dist"
     },
     "eslintConfig": {
         "extends": [
@@ -46,10 +43,13 @@
         ]
     },
     "devDependencies": {
-        "@tailwindcss/aspect-ratio": "^0.3.0",
-        "autoprefixer": "^9.8.8",
-        "gh-pages": "^3.2.3",
-        "postcss": "^7.0.39",
-        "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
+        "@vitejs/plugin-react": "^2.2.0",
+        "autoprefixer": "^10.4.13",
+        "gh-pages": "^4.0.0",
+        "postcss": "^8.4.19",
+        "tailwindcss": "^3.2.3",
+        "vite": "^3.2.3",
+        "vite-plugin-svgr": "^2.2.2",
+        "vite-tsconfig-paths": "^3.5.2"
     }
 }

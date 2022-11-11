@@ -14,10 +14,16 @@ type ContextType = {
     updateGameOptions: (gameOptions: IGameOptions) => void;
 };
 
+interface Props {
+    children: React.ReactNode;
+}
+
 const AppContext = React.createContext<ContextType | null>(null);
 
-const AppProvider: React.FC<React.ReactNode> = ({ children }) => {
-    const [activeComponent, setActiveComponent] = useState(components.Main_Menu);
+const AppProvider: React.FC<Props> = ({ children }) => {
+    const [activeComponent, setActiveComponent] = useState(
+        components.Main_Menu
+    );
     const [gameOptions, setGameOptions] = useState<IGameOptions>({
         category: '',
         difficulty: '',
@@ -43,7 +49,12 @@ const AppProvider: React.FC<React.ReactNode> = ({ children }) => {
 
         if (mode === modes.Marathon) {
             setFetchURL(
-                getFetchURL({ ...gameOptions, category: '', type: 'multiple', amount: 50 })
+                getFetchURL({
+                    ...gameOptions,
+                    category: '',
+                    type: 'multiple',
+                    amount: 50,
+                })
             );
         }
     };
@@ -56,10 +67,12 @@ const AppProvider: React.FC<React.ReactNode> = ({ children }) => {
     const getFetchURL = (gameOptions: IGameOptions): string => {
         let paramsObj = {};
 
-        if (gameOptions.category) paramsObj = { ...paramsObj, category: gameOptions.category };
+        if (gameOptions.category)
+            paramsObj = { ...paramsObj, category: gameOptions.category };
         if (gameOptions.difficulty)
             paramsObj = { ...paramsObj, difficulty: gameOptions.difficulty };
-        if (gameOptions.type) paramsObj = { ...paramsObj, type: gameOptions.type };
+        if (gameOptions.type)
+            paramsObj = { ...paramsObj, type: gameOptions.type };
         paramsObj = { ...paramsObj, amount: gameOptions.amount };
         paramsObj = { ...paramsObj, encode: 'url3986' };
         const params = new URLSearchParams(paramsObj);
@@ -79,7 +92,8 @@ const AppProvider: React.FC<React.ReactNode> = ({ children }) => {
                 navigateToOptions,
                 navigateToQuiz,
                 updateGameOptions,
-            }}>
+            }}
+        >
             {children}
         </AppContext.Provider>
     );
